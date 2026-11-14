@@ -1,0 +1,160 @@
+version: '3.8'
+
+# =============================================================================
+# DevOps Lab 3 - Master Orchestration Docker Compose
+# Services:
+#   - App           : Node.js Express Application (Port 3000)
+#   - Elasticsearch : Log Indexing and Search Engine (Port 9200)
+#   - Logstash      : Log Ingestion, Parsing and Pipeline Processing (Port 5044/9600)
+#   - Kibana        : Log Visualization and Analytics Dashboard (Port 5601)
+#   - Prometheus    : Metrics Scraper and Time-Series Database (Port 9090)
+#   - Grafana       : Metric Visualization and Monitoring Dashboards (Port 3001)
+#   - Node Exporter : Host and System Level Telemetry Collector (Port 9100)
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. Target Application
+  # ---------------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devops-lab-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - FEATURE_DARK_MODE=true
+      - FEATURE_NEW_DASHBOARD=true
+    volumes:
+      - app-logs:/app/src/logs
+    networks:
+      - devops-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # 2. Centralized Logging (ELK Stack)
+  # ---------------------------------------------------------------------------
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: devops-elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - devops-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: devops-logstash
+    restart: unless-stopped
+    volumes:
+      - ./Lab3_Submission/configs/elk/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - app-logs:/logs:ro
+    environment:
+      - "LS_JAVA_OPTS=-Xms256m -Xmx256m"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - devops-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: devops-kibana
+    restart: unless-stopped
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - devops-network
+
+  # ---------------------------------------------------------------------------
+  # 3. Metrics Monitoring (Prometheus & Grafana)
+  # ---------------------------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    container_name: devops-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./Lab3_Submission/configs/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - devops-network
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: devops-grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./Lab3_Submission/configs/monitoring/grafana-datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
+      - ./Lab3_Submission/configs/monitoring/grafana-dashboard-provisioning.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
+      - ./Lab3_Submission/configs/monitoring/grafana-dashboard.json:/var/lib/grafana/dashboards/app-dashboard.json:ro
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - devops-network
+
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    container_name: devops-node-exporter
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    networks:
+      - devops-network
+
+# -----------------------------------------------------------------------------
+# Storage Volumes & Networks
+# -----------------------------------------------------------------------------
+volumes:
+  es-data:
+    name: devops-es-data
+  app-logs:
+    name: devops-app-logs
+  prometheus-data:
+    name: devops-prometheus-data
+  grafana-data:
+    name: devops-grafana-data
+
+networks:
+  devops-network:
+    name: devops-network
+    driver: bridge

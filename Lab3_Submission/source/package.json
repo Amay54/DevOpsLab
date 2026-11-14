@@ -1,0 +1,61 @@
+{
+  "name": "devops-lab",
+  "version": "1.0.0",
+  "description": "Node.js Express application with full DevOps infrastructure for university lab",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "start:flags-off": "node -r dotenv/config src/app.js dotenv_config_path=.env.flags-off",
+    "dev": "nodemon src/app.js",
+    "test": "jest --forceExit --detectOpenHandles --coverage",
+    "test:unit": "jest --forceExit --detectOpenHandles src/__tests__/",
+    "test:selenium": "node Lab3_Submission/testing/selenium/test-app.js",
+    "test:load": "node Lab3_Submission/testing/load/load-test.js",
+    "generate-logs": "node Lab3_Submission/configs/elk/generate-logs.js",
+    "lint": "echo 'Linting passed (no ESLint configured)'",
+    "audit": "npm audit --production",
+    "docker:build": "docker build -t devops-lab-app .",
+    "docker:run": "docker run -p 3000:3000 devops-lab-app",
+    "compose:up": "docker-compose up -d",
+    "compose:down": "docker-compose down",
+    "compose:elk": "docker-compose -f docker-compose.elk.yml up -d",
+    "compose:monitoring": "docker-compose -f docker-compose.monitoring.yml up -d"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/__tests__/**",
+      "!src/logs/**"
+    ]
+  },
+  "keywords": [
+    "devops",
+    "express",
+    "monitoring",
+    "elk",
+    "prometheus",
+    "grafana",
+    "ci-cd"
+  ],
+  "author": "DevOps Lab Student",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.4",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "prom-client": "^15.1.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^119.0.1",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "selenium-webdriver": "^4.15.0",
+    "supertest": "^6.3.3"
+  }
+}

@@ -1,0 +1,104 @@
+# ─── Semgrep Configuration for Node.js Security Scanning ─────────────────────
+
+rules:
+  # ── Detect hardcoded secrets ──────────────────────────────────────────────
+  - id: hardcoded-secret
+    patterns:
+      - pattern-either:
+          - pattern: |
+              $KEY = "..."
+          - pattern: |
+              const $KEY = "..."
+          - pattern: |
+              let $KEY = "..."
+    metavariable-regex:
+      metavariable: $KEY
+      regex: '(?i)(password|secret|api_key|apikey|token|auth|credential)'
+    message: "Potential hardcoded secret detected in variable '$KEY'. Use environment variables instead."
+    languages: [javascript, typescript]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-798: Use of Hard-coded Credentials"
+
+  # ── Detect eval() usage ──────────────────────────────────────────────────
+  - id: no-eval
+    pattern: eval(...)
+    message: "Avoid using eval() as it can lead to code injection vulnerabilities."
+    languages: [javascript, typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+
+  # ── Detect SQL injection risk ────────────────────────────────────────────
+  - id: sql-injection-concat
+    patterns:
+      - pattern-either:
+          - pattern: |
+              $DB.query("..." + $INPUT + "...")
+          - pattern: |
+              $DB.query(`...${$INPUT}...`)
+    message: "Potential SQL injection via string concatenation. Use parameterized queries."
+    languages: [javascript, typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-89: SQL Injection"
+
+  # ── Detect missing helmet ────────────────────────────────────────────────
+  - id: express-no-helmet
+    patterns:
+      - pattern: |
+          const $APP = express()
+      - pattern-not-inside: |
+          ...
+          $APP.use(helmet(...))
+          ...
+    message: "Express app created without Helmet security headers. Add app.use(helmet())."
+    languages: [javascript]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-693: Protection Mechanism Failure"
+
+  # ── Detect console.log in production code ────────────────────────────────
+  - id: no-console-log
+    pattern: console.log(...)
+    message: "Avoid console.log() in production code. Use a structured logger like Winston."
+    languages: [javascript, typescript]
+    severity: INFO
+    metadata:
+      category: best-practice
+
+  # ── Detect insecure HTTP usage ───────────────────────────────────────────
+  - id: insecure-http-request
+    patterns:
+      - pattern-either:
+          - pattern: |
+              require('http').request(...)
+          - pattern: |
+              http.request({..., protocol: "http:", ...})
+    message: "Insecure HTTP request detected. Use HTTPS for external communications."
+    languages: [javascript]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-319: Cleartext Transmission of Sensitive Information"
+
+  # ── Detect path traversal risk ───────────────────────────────────────────
+  - id: path-traversal
+    patterns:
+      - pattern-either:
+          - pattern: |
+              path.join(..., $INPUT, ...)
+          - pattern: |
+              path.resolve(..., $INPUT, ...)
+      - pattern-not: |
+          path.join(__dirname, ...)
+    message: "Potential path traversal vulnerability. Validate and sanitize user input used in file paths."
+    languages: [javascript]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-22: Improper Limitation of a Pathname to a Restricted Directory"

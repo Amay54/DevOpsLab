@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-14T15:46:27.416Z",
+  "vus": 30,
+  "durationSec": 15.035,
+  "totalRequests": 27364,
+  "successfulRequests": 27364,
+  "failedRequests": 0,
+  "rps": 1820.02,
+  "latency": {
+    "min": "0.94",
+    "max": "83.27",
+    "mean": "6.63",
+    "p50": "4.54",
+    "p90": "11.62",
+    "p95": "18.59",
+    "p99": "35.10"
+  },
+  "statusCodes": {
+    "200": 997,
+    "429": 26367
+  }
+}
