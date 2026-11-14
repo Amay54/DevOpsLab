@@ -193,7 +193,8 @@ def generate_q1_report():
         "The objective of this lab is to implement centralized logging using the ELK Stack "
         "(Elasticsearch, Logstash, Kibana) for a Node.js Express application. This involves "
         "setting up structured application logging, configuring log collection and parsing through "
-        "Logstash, storing logs in Elasticsearch, and visualizing them using Kibana dashboards."
+        "Logstash, storing logs in Elasticsearch, and visualizing them using Kibana dashboards.\n\n"
+        "Project GitHub Repository: https://github.com/Amay54/DevOpsLab"
     )
 
     # Tools and Technologies
@@ -471,7 +472,8 @@ def generate_q2_report():
     pdf.add_text(
         "The objective is to integrate security scanning and best practices into the CI/CD pipeline, "
         "implementing a DevSecOps approach. This includes vulnerability scanning, dependency analysis, "
-        "static code analysis, container image scanning, and secure pipeline practices."
+        "static code analysis, container image scanning, and secure pipeline practices.\n\n"
+        "Project GitHub Repository: https://github.com/Amay54/DevOpsLab"
     )
 
     pdf.add_section("2. DevSecOps Overview")
@@ -706,7 +708,8 @@ def generate_q3_report():
     pdf.add_text(
         "Set up application and infrastructure monitoring using Prometheus for metrics collection "
         "and Grafana for visualization. Implement custom application metrics, configure scraping, "
-        "and create meaningful dashboards to monitor application health and performance."
+        "and create meaningful dashboards to monitor application health and performance.\n\n"
+        "Project GitHub Repository: https://github.com/Amay54/DevOpsLab"
     )
 
     pdf.add_section("2. Monitoring Architecture")
@@ -935,7 +938,8 @@ def generate_q4_report():
     pdf.add_text(
         "Implement feature flags for controlled feature rollout, perform load testing to "
         "assess application performance under stress, and create Selenium-based automated "
-        "tests for critical application functionality."
+        "tests for critical application functionality.\n\n"
+        "Project GitHub Repository: https://github.com/Amay54/DevOpsLab"
     )
 
     # PART A - Feature Flags
@@ -1252,6 +1256,7 @@ def generate_q5_report():
         "ELK Stack, metrics monitoring with Prometheus and Grafana, CI/CD pipeline security with "
         "DevSecOps tools, feature flag management, load testing, and automated browser testing with "
         "Selenium.\n\n"
+        "Project GitHub Repository: https://github.com/Amay54/DevOpsLab\n\n"
         "The application is containerized using Docker and orchestrated with Docker Compose, "
         "demonstrating Infrastructure as Code (IaC) principles. The entire setup is designed to "
         "be reproducible and suitable for both development and production environments."
@@ -1575,6 +1580,7 @@ def generate_q5_report():
 
     # 18. References
     pdf.add_section("18. References and Tools Used")
+    pdf.add_bullet("Project GitHub Repository - https://github.com/Amay54/DevOpsLab")
     pdf.add_bullet("Elasticsearch - https://www.elastic.co/elasticsearch")
     pdf.add_bullet("Logstash - https://www.elastic.co/logstash")
     pdf.add_bullet("Kibana - https://www.elastic.co/kibana")
