@@ -25,3 +25,30 @@ docker compose -f docker-compose.yml up -d
 open http://localhost:9090  # Prometheus
 open http://localhost:3001  # Grafana (admin/admin)
 `
+
+
+## Execution Evidence & Verified Deliverables
+- **prometheus_running.png**:
+
+  ![prometheus_running.png](evidence/prometheus_running.png)
+
+- **prometheus_targets.png**:
+
+  ![prometheus_targets.png](evidence/prometheus_targets.png)
+
+- **prometheus_query.png**:
+
+  ![prometheus_query.png](evidence/prometheus_query.png)
+
+- **grafana_datasource.png**:
+
+  ![grafana_datasource.png](evidence/grafana_datasource.png)
+
+- **grafana_dashboard.png**:
+
+  ![grafana_dashboard.png](evidence/grafana_dashboard.png)
+
+- **grafana_panels.png**:
+
+  ![grafana_panels.png](evidence/grafana_panels.png)
+

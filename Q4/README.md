@@ -18,3 +18,30 @@ Demonstrates release engineering and automated quality assurance:
 - 	est-app.js - Selenium automated test suite (10 test cases).
 - selenium-test-results.json - Automated browser test execution log.
 - Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf - Complete technical PDF report.
+
+
+## Execution Evidence & Verified Deliverables
+- **feature_flag_on.png**:
+
+  ![feature_flag_on.png](evidence/feature_flag_on.png)
+
+- **feature_flag_off.png**:
+
+  ![feature_flag_off.png](evidence/feature_flag_off.png)
+
+- **load_test_output.png**:
+
+  ![load_test_output.png](evidence/load_test_output.png)
+
+- **load_test_results.png**:
+
+  ![load_test_results.png](evidence/load_test_results.png)
+
+- **selenium_execution.png**:
+
+  ![selenium_execution.png](evidence/selenium_execution.png)
+
+- **selenium_results.png**:
+
+  ![selenium_results.png](evidence/selenium_results.png)
+

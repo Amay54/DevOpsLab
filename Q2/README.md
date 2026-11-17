@@ -26,3 +26,22 @@ un-security-scans.ps1 / .sh - Automation script for local & CI security tool exe
 # Run security scanning locally
 ./run-security-scans.ps1
 `
+
+
+## Execution Evidence & Verified Deliverables
+- **cicd_pipeline.png**:
+
+  ![cicd_pipeline.png](evidence/cicd_pipeline.png)
+
+- **npm_audit_results.png**:
+
+  ![npm_audit_results.png](evidence/npm_audit_results.png)
+
+- **semgrep_results.png**:
+
+  ![semgrep_results.png](evidence/semgrep_results.png)
+
+- **trivy_scan_results.png**:
+
+  ![trivy_scan_results.png](evidence/trivy_scan_results.png)
+

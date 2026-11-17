@@ -30,3 +30,30 @@ node generate-logs.js
 # Access Kibana
 open http://localhost:5601
 `
+
+
+## Execution Evidence & Verified Deliverables
+- **elk_services_running.png**:
+
+  ![elk_services_running.png](evidence/elk_services_running.png)
+
+- **app_logs_generated.png**:
+
+  ![app_logs_generated.png](evidence/app_logs_generated.png)
+
+- **logstash_output.png**:
+
+  ![logstash_output.png](evidence/logstash_output.png)
+
+- **elasticsearch_indices.png**:
+
+  ![elasticsearch_indices.png](evidence/elasticsearch_indices.png)
+
+- **kibana_discover.png**:
+
+  ![kibana_discover.png](evidence/kibana_discover.png)
+
+- **kibana_dashboard.png**:
+
+  ![kibana_dashboard.png](evidence/kibana_dashboard.png)
+
