@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-14T15:51:20.444Z",
+  "timestamp": "2026-11-17T09:34:41.145Z",
   "total": 10,
   "passed": 10,
   "failed": 0,
@@ -8,61 +8,61 @@
     {
       "name": "TC-01: Load Home Page & Verify Page Title",
       "status": "PASS",
-      "duration": 317,
+      "duration": 796,
       "error": null
     },
     {
       "name": "TC-02: Verify Feature Flag Theme Styling in DOM",
       "status": "PASS",
-      "duration": 42,
+      "duration": 146,
       "error": null
     },
     {
       "name": "TC-03: Verify Navigation Header & Brand Badge",
       "status": "PASS",
-      "duration": 17,
+      "duration": 63,
       "error": null
     },
     {
       "name": "TC-01: Home Page HTML & DOM Validation",
       "status": "PASS",
-      "duration": 27,
+      "duration": 371,
       "error": null
     },
     {
       "name": "TC-02: Health Check API Endpoint Verification",
       "status": "PASS",
-      "duration": 3,
+      "duration": 6,
       "error": null
     },
     {
       "name": "TC-03: Feature Flag Dynamic Configuration Detection",
       "status": "PASS",
-      "duration": 3,
+      "duration": 20,
       "error": null
     },
     {
       "name": "TC-04: User Directory Data Query",
       "status": "PASS",
-      "duration": 3,
+      "duration": 6,
       "error": null
     },
     {
       "name": "TC-05: Dashboard Widget Layout & State Query",
       "status": "PASS",
-      "duration": 2,
+      "duration": 6,
       "error": null
     },
     {
       "name": "TC-06: Authentication Form & Validation Workflow",
       "status": "PASS",
-      "duration": 9,
+      "duration": 598,
       "error": null
     },
     {
       "name": "TC-07: Prometheus Metrics Endpoint Telemetry Scrape",
       "status": "PASS",
-      "duration": 8,
+      "duration": 14,
       "error": null
     }
   ]

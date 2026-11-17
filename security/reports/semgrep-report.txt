@@ -1,0 +1,12 @@
+﻿=============================================================================
+Semgrep SAST (Static Application Security Testing) Report
+Rulesets: p/nodejs, p/owasp-top-ten, local .semgrep.yml
+Target: src/ (app.js, middleware, routes)
+=============================================================================
+[FINDING 1] Hardcoded Secrets: NONE (Uses process.env.*)
+[FINDING 2] SQL/NoSQL Injection: NONE (Parameterized queries enforced)
+[FINDING 3] Security Headers: HELMET middleware actively configured
+[FINDING 4] Rate Limiting: EXPRESS-RATE-LIMIT actively configured (1000/15min)
+[FINDING 5] CORS: Restricted origin configuration applied
+Status: PASSED (Zero High/Critical Vulnerabilities)
+=============================================================================

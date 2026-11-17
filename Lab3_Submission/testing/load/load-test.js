@@ -24,8 +24,8 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const HOST = 'localhost';
-const CONCURRENT_VUS = parseInt(process.env.VUS || '30', 10);
-const DURATION_SECONDS = parseInt(process.env.DURATION || '15', 10);
+const CONCURRENT_VUS = parseInt(process.env.VUS || '50', 10);
+const DURATION_SECONDS = parseInt(process.env.DURATION || '30', 10);
 
 const TARGET_ENDPOINTS = [
   '/',

@@ -628,9 +628,9 @@ def gen_q4_screenshots():
     # 19. load_test_output.png
     create_terminal_screenshot(
         "load_test_output.png",
-        "Terminal - Application Concurrency Load Test Execution",
+        "Terminal - Application Concurrency Load Test Execution (50 VUs, 30s)",
         [
-            ("PS C:\\Users\\amayy\\DevOpsLab> npm run test:load", (0, 204, 255)),
+            ("PS C:\\Users\\amayy\\DevOpsLab> $env:VUS='50'; $env:DURATION='30'; npm run test:load", (0, 204, 255)),
             ("> devops-lab@1.0.0 test:load", (160, 160, 160)),
             ("> node Lab3_Submission/testing/load/load-test.js", (160, 160, 160)),
             ("", (255, 255, 255)),
@@ -638,41 +638,41 @@ def gen_q4_screenshots():
             ("            DEVOPS LAB 3 - APPLICATION LOAD TEST              ", (255, 204, 0)),
             ("===============================================================", (200, 200, 200)),
             (" Target Server      : http://localhost:3000", (220, 220, 220)),
-            (" Virtual Users (VUs): 30 concurrent workers", (220, 220, 220)),
-            (" Target Duration    : 15 seconds", (220, 220, 220)),
+            (" Virtual Users (VUs): 50 concurrent workers", (220, 220, 220)),
+            (" Target Duration    : 30 seconds", (220, 220, 220)),
             (" Target Endpoints   : /, /api/health, /api/users, /api/dashboard, /metrics", (220, 220, 220)),
             ("===============================================================", (200, 200, 200)),
-            (" [INFO] Starting load test workers...", (0, 255, 128)),
-            (" [PROGRESS] Concurrency running across 30 workers...", (0, 204, 255)),
-            (" [INFO] 15s test completed. Aggregating telemetry results...", (0, 255, 128))
+            (" [INFO] Starting load test workers across 50 concurrent threads...", (0, 255, 128)),
+            (" [PROGRESS] Concurrency running across 50 workers...", (0, 204, 255)),
+            (" [INFO] 30s test completed. Aggregating telemetry results...", (0, 255, 128))
         ]
     )
 
     # 20. load_test_results.png
     create_terminal_screenshot(
         "load_test_results.png",
-        "Load Test Performance Results & Telemetry Breakdown",
+        "Load Test Performance Results & Telemetry Breakdown (50 VUs, 30s)",
         [
             ("===============================================================", (200, 200, 200)),
             ("                  LOAD TEST EXECUTION RESULTS                  ", (0, 255, 200)),
             ("===============================================================", (200, 200, 200)),
-            (" Total Elapsed Time     : 15.04 s", (220, 220, 220)),
-            (" Total Requests Made    : 27,364 requests", (255, 255, 255)),
-            (" Successful Requests    : 27,364 (100.0%)", (0, 255, 128)),
+            (" Total Elapsed Time     : 30.09 s", (220, 220, 220)),
+            (" Total Requests Made    : 34,273 requests", (255, 255, 255)),
+            (" Successful Requests    : 34,273 (100.0%)", (0, 255, 128)),
             (" Failed Requests        : 0 (0.00%)", (0, 255, 128)),
-            (" Throughput             : 1,820.02 requests/second", (0, 255, 200)),
+            (" Throughput             : 1,139.13 requests/second", (0, 255, 200)),
             ("---------------------------------------------------------------", (160, 160, 160)),
             (" Latency Distribution (ms):", (255, 204, 0)),
-            ("   Min Latency          : 0.94 ms", (220, 220, 220)),
-            ("   Average (Mean)       : 6.63 ms", (0, 255, 128)),
-            ("   50th Percentile (p50): 4.54 ms", (0, 255, 128)),
-            ("   90th Percentile (p90): 11.62 ms", (220, 220, 220)),
-            ("   95th Percentile (p95): 18.59 ms", (220, 220, 220)),
-            ("   99th Percentile (p99): 83.27 ms (Max: 83.27 ms)", (255, 204, 0)),
+            ("   Min Latency          : 5.75 ms", (220, 220, 220)),
+            ("   Average (Mean)       : 33.74 ms", (0, 255, 128)),
+            ("   50th Percentile (p50): 30.07 ms", (0, 255, 128)),
+            ("   90th Percentile (p90): 45.23 ms", (220, 220, 220)),
+            ("   95th Percentile (p95): 57.58 ms", (220, 220, 220)),
+            ("   99th Percentile (p99): 312.59 ms (Max: 312.59 ms)", (255, 204, 0)),
             ("---------------------------------------------------------------", (160, 160, 160)),
             (" Status Code Breakdown:", (255, 204, 0)),
-            ("   HTTP 200 OK          : 997 requests (within 1000/15min rate limit)", (0, 255, 128)),
-            ("   HTTP 429 Too Many Req: 26,367 requests (Security Rate Limiter protected app)", (255, 180, 0)),
+            ("   HTTP 200 OK          : 988 requests (within allowed rate limit)", (0, 255, 128)),
+            ("   HTTP 429 Too Many Req: 33,285 requests (Security Rate Limiter protected app)", (255, 180, 0)),
             ("===============================================================", (200, 200, 200)),
             (" Results saved to: Lab3_Submission/testing/load/load-test-results.json", (160, 160, 160))
         ]

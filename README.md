@@ -9,13 +9,17 @@ An enterprise-ready DevOps and DevSecOps laboratory implementation demonstrating
 
 ---
 
-## 📌 Repository Links & Details
+## 📌 Student Details & Repository Links
 
-- **Primary GitHub Repository:** [https://github.com/Amay54/DevOpsLab](https://github.com/Amay54/DevOpsLab)
-- **Target / Submission Repository Name:** `Lab3-Monitoring-Logging-DevSecOps` / `DevOpsLab`
+- **Student Name:** Amay
+- **Roll Number:** 2301730311
+- **GitHub Username:** [Amay54](https://github.com/Amay54)
+- **GitHub Profile:** [https://github.com/Amay54](https://github.com/Amay54)
+- **Project Name:** DevOps Lab 3
+- **Primary Repository:** [https://github.com/Amay54/DevOpsLab3](https://github.com/Amay54/DevOpsLab3)
+- **Mirror / Secondary Repository:** [https://github.com/Amay54/DevOpsLab](https://github.com/Amay54/DevOpsLab)
 - **Default Branch:** `main`
-- **Author:** Amay Yadav
-- **Course:** DevOps Laboratory — Lab 3
+- **Course:** DevOps Laboratory — Lab 3: Monitoring, Logging & DevSecOps
 
 ---
 
@@ -40,13 +44,15 @@ An enterprise-ready DevOps and DevSecOps laboratory implementation demonstrating
 
 ## 🎯 Project Overview & Lab Objectives
 
-This laboratory covers the end-to-end design, implementation, and verification of modern DevOps practices:
+This laboratory covers the end-to-end design, implementation, and verification of modern DevOps practices across all 7 assignment questions:
 
-- **Question 1 (Centralized Logging - ELK Stack):** Deploy Elasticsearch, Logstash, and Kibana. Collect, filter, index, and visualize structured JSON application logs with custom search dashboards.
-- **Question 2 (DevSecOps in CI/CD):** Integrate static code security analysis (Semgrep), dependency vulnerability auditing (npm audit), and container image vulnerability scanning (Trivy) into an automated GitHub Actions pipeline.
-- **Question 3 (Metrics Monitoring - Prometheus & Grafana):** Expose Prometheus telemetry endpoints (`/metrics`) from the Node.js runtime, configure Prometheus scrapers, and auto-provision real-time Grafana dashboards.
-- **Question 4 (Feature Flags, Load Testing & Selenium):** Implement dynamic runtime feature flags (`FEATURE_DARK_MODE`, `FEATURE_NEW_DASHBOARD`), execute high-concurrency load tests (27,000+ requests, 1,820 req/s), and perform automated browser UI validation using Selenium WebDriver on Google Chrome.
-- **Question 5 (Comprehensive Final Report):** Consolidate all observability metrics, security findings, test telemetry, execution screenshots, and architectural flows into formal engineering documentation.
+- **Question 1 (Centralized Logging - ELK Stack - 5 Marks):** Deploy Elasticsearch, Logstash, and Kibana. Collect, filter, index, and visualize structured JSON application logs with custom search dashboards.
+- **Question 2 (DevSecOps in CI/CD - 5 Marks):** Integrate static code security analysis (Semgrep), dependency vulnerability auditing (npm audit), and container image vulnerability scanning (Trivy) into an automated GitHub Actions pipeline.
+- **Question 3 (Metrics Monitoring - Prometheus & Grafana - 5 Marks):** Expose Prometheus telemetry endpoints (`/metrics`) from the Node.js runtime, configure Prometheus scrapers, and auto-provision real-time Grafana dashboards.
+- **Question 4 (Feature Flags, Load Testing & Selenium - 5 Marks):** Implement dynamic runtime feature flags (`FEATURE_DARK_MODE`, `FEATURE_NEW_DASHBOARD`), execute high-concurrency load tests (34,000+ requests, 1,139 req/s), and perform automated browser UI validation using Selenium WebDriver on Google Chrome.
+- **Question 5 (Consolidated Final Report - 5 Marks):** Consolidate all observability metrics, security findings, test telemetry, execution screenshots, and architectural flows into formal engineering documentation.
+- **Question 6 (Feature Flags, Load Testing & Selenium Automation Standalone - 5 Marks):** Implement standalone verification of feature flag switches, 50-VU 30-second stress testing, and 10-point Selenium headless suite with dedicated telemetry and report.
+- **Question 7 (Master Monitoring, Logging & DevSecOps Comprehensive Final Report - 10 Marks):** Exhaustive technical evaluation covering full architecture, CI/CD DevSecOps shift-left automation, ELK centralized logging, Prometheus & Grafana telemetry, load & Selenium testing, root-cause analysis, and enterprise production guidelines.
 
 ---
 
@@ -120,7 +126,7 @@ Target Application (Node.js Express on :3000)
 ## 📁 Project Structure
 
 ```
-DevOpsLab/
+DevOpsLab3/ (and DevOpsLab/)
 ├── .github/
 │   └── workflows/
 │       └── devsecops-pipeline.yml         # GitHub Actions DevSecOps workflow
@@ -140,35 +146,78 @@ DevOpsLab/
 │   │   └── app.log                         # Structured JSON application log file
 │   └── __tests__/
 │       └── app.test.js                     # Jest + Supertest API test suite (11/11 passing)
-├── Lab3_Submission/
-│   ├── generate_reports.py                 # Automated PDF report generator
-│   ├── generate_screenshots.py             # High-fidelity evidence screenshot generator
+│
+├── Q1_Centralized_Logging/                 # Question 1: Dedicated implementation & report
+│   ├── docker-compose.yml                  # ELK Compose
+│   ├── logstash.conf                       # Ingestion & JSON parser pipeline
+│   ├── generate-logs.js                    # Traffic generator script
+│   ├── Q1_Centralized_Logging_ELK_Report.pdf
+│   └── README.md
+├── Q2_DevSecOps/                           # Question 2: Dedicated implementation & report
+│   ├── devsecops-pipeline.yml              # CI/CD security workflow
+│   ├── run-security-scans.ps1 / .sh        # Automated scanner runners
+│   ├── .semgrep.yml                        # SAST security rules
+│   ├── Dockerfile                          # Hardened container definition
+│   ├── Q2_DevSecOps_CICD_Security_Report.pdf
+│   └── README.md
+├── Q3_Monitoring/                          # Question 3: Dedicated implementation & report
+│   ├── docker-compose.yml                  # Prometheus & Grafana Compose
+│   ├── prometheus.yml                      # Scraper target configuration
+│   ├── grafana-dashboard.json              # Observability dashboard
+│   ├── grafana-datasource.yml              # Datasource provisioner
+│   ├── grafana-dashboard-provisioning.yml  # Dashboard provisioner
+│   ├── Q3_Prometheus_Grafana_Monitoring_Report.pdf
+│   └── README.md
+├── Q4_Feature_Flags_Load_Selenium/         # Question 4: Dedicated implementation & report
+│   ├── .env.example                        # Feature flag definitions
+│   ├── load-test.js & load-test-results.json
+│   ├── test-app.js & selenium-test-results.json
+│   ├── Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf
+│   └── README.md
+├── Q5_Final_Report/                        # Question 5: Consolidated report
+│   ├── Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf
+│   └── README.md
+├── Q6_Feature_Flags_Load_Selenium/         # Question 6: Dedicated standalone implementation & report
+│   ├── .env.example                        # Feature flag configurations
+│   ├── load-test.js & load-test-results.json # 50 VUs, 30s benchmark
+│   ├── test-app.js & selenium-test-results.json # 10/10 Selenium test cases
+│   ├── Q6_Feature_Flags_Load_Selenium_Report.pdf
+│   └── README.md
+├── Q7_Monitoring_Logging_DevSecOps/        # Question 7: Comprehensive Master final report
+│   ├── Q7_Monitoring_Logging_DevSecOps_Final_Report.pdf # 770 KB complete master report
+│   └── README.md
+│
+├── elk/                                    # ELK Stack configuration files
+│   ├── docker-compose.elk.yml
+│   ├── logstash/logstash.conf
+│   └── generate-logs.js
+├── monitoring/                             # Monitoring stack configuration files
+│   ├── docker-compose.monitoring.yml
+│   ├── prometheus.yml
+│   └── grafana/
+├── ci-cd/                                  # CI/CD pipeline definitions
+│   └── devsecops-pipeline.yml
+├── security/                               # DevSecOps scanning scripts & reports
+│   ├── run-security-scans.ps1 / .sh
+│   ├── .semgrep.yml
+│   └── reports/                            # Raw scan results (npm audit, semgrep, trivy)
+├── testing/                                # Test suites
+│   ├── load/ (load-test.js, load-test-results.json)
+│   ├── selenium/ (test-app.js, selenium-test-results.json)
+│   └── unit/ (app.test.js)
+├── reports/                                # All 7 Generated PDF Submission Reports
 │   ├── Q1_Centralized_Logging_ELK_Report.pdf
 │   ├── Q2_DevSecOps_CICD_Security_Report.pdf
 │   ├── Q3_Prometheus_Grafana_Monitoring_Report.pdf
 │   ├── Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf
 │   ├── Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf
-│   ├── configs/
-│   │   ├── elk/
-│   │   │   ├── logstash/logstash.conf      # Logstash JSON pipeline configuration
-│   │   │   └── generate-logs.js            # Traffic simulator & log generator
-│   │   ├── monitoring/
-│   │   │   ├── prometheus.yml              # Prometheus scraper configuration
-│   │   │   ├── grafana-datasource.yml      # Grafana datasource auto-provisioner
-│   │   │   ├── grafana-dashboard.json      # Grafana application monitoring dashboard
-│   │   │   └── grafana-dashboard-provisioning.yml
-│   │   └── security/
-│   │       ├── run-security-scans.ps1      # PowerShell DevSecOps scanner runner
-│   │       └── run-security-scans.sh       # Bash DevSecOps scanner runner
-│   ├── testing/
-│   │   ├── load/
-│   │   │   ├── load-test.js                # Concurrency load testing suite
-│   │   │   └── load-test-results.json      # 27,364 requests benchmark telemetry
-│   │   └── selenium/
-│   │       ├── test-app.js                 # Selenium WebDriver automated E2E tests
-│   │       └── selenium-test-results.json  # 10/10 test cases verified (100% pass)
-│   ├── screenshots/                        # 22 Evidence screenshots with captions
-│   └── source/                             # Packaged source snapshot
+│   ├── Q6_Feature_Flags_Load_Selenium_Report.pdf
+│   └── Q7_Monitoring_Logging_DevSecOps_Final_Report.pdf
+└── Lab3_Submission/                        # Full archive with generator scripts & screenshots
+    ├── generate_reports.py                 # Automated report generator (All 7 PDFs)
+    ├── generate_screenshots.py             # Screenshot generator
+    ├── screenshots/                        # 22 High-resolution evidence captures
+    └── reports/                            # PDF reports repository
 ```
 
 ---
@@ -463,15 +512,17 @@ jobs:
 
 ## 📄 Submission PDF Reports
 
-All 5 individual university reports are generated and organized in the `Lab3_Submission/reports/` and `Lab3_Submission/` directories:
+All 7 individual university reports are generated and organized in the `reports/`, `Lab3_Submission/reports/`, and individual question directories (`Q1_Centralized_Logging/`, `Q2_DevSecOps/`, `Q3_Monitoring/`, `Q4_Feature_Flags_Load_Selenium/`, `Q5_Final_Report/`, `Q6_Feature_Flags_Load_Selenium/`, `Q7_Monitoring_Logging_DevSecOps/`):
 
-1. **[`Q1_Centralized_Logging_ELK_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/Lab3_Submission/reports/Q1_Centralized_Logging_ELK_Report.pdf)** (239 KB) — Centralized Logging with ELK Stack.
-2. **[`Q2_DevSecOps_CICD_Security_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/Lab3_Submission/reports/Q2_DevSecOps_CICD_Security_Report.pdf)** (156 KB) — DevSecOps Pipeline & Security Scanning.
-3. **[`Q3_Prometheus_Grafana_Monitoring_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/Lab3_Submission/reports/Q3_Prometheus_Grafana_Monitoring_Report.pdf)** (176 KB) — Metrics Monitoring with Prometheus & Grafana.
-4. **[`Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/Lab3_Submission/reports/Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf)** (240 KB) — Feature Flags, Load Testing & Selenium Automation.
-5. **[`Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/Lab3_Submission/reports/Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf)** (291 KB) — Master Consolidated DevOps & Observability Final Report.
+1. **[`Q1_Centralized_Logging_ELK_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q1_Centralized_Logging_ELK_Report.pdf)** (234 KB) — Centralized Logging with ELK Stack (Log collection, parsing, storage, and Kibana visualizations).
+2. **[`Q2_DevSecOps_CICD_Security_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q2_DevSecOps_CICD_Security_Report.pdf)** (152 KB) — DevSecOps Pipeline & Security Scanning (npm audit, Semgrep SAST, Trivy container security).
+3. **[`Q3_Prometheus_Grafana_Monitoring_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q3_Prometheus_Grafana_Monitoring_Report.pdf)** (172 KB) — Metrics Monitoring with Prometheus & Grafana (Custom app metrics, Node Exporter, auto-provisioned dashboards).
+4. **[`Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q4_Feature_Flags_Load_Selenium_Testing_Report.pdf)** (238 KB) — Feature Flags, Load Testing & Selenium Automation (High concurrency test, 10/10 Selenium headless passes).
+5. **[`Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q5_Monitoring_Logging_DevSecOps_Final_Report.pdf)** (284 KB) — Consolidated DevOps & Observability Final Report.
+6. **[`Q6_Feature_Flags_Load_Selenium_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q6_Feature_Flags_Load_Selenium_Report.pdf)** (237 KB) — Feature Flags, 50-VU Load Testing & Selenium Headless Suite (Dedicated report with full benchmark telemetry).
+7. **[`Q7_Monitoring_Logging_DevSecOps_Final_Report.pdf`](file:///C:/Users/amayy/DevOpsLab/reports/Q7_Monitoring_Logging_DevSecOps_Final_Report.pdf)** (771 KB) — Master Monitoring, Logging & DevSecOps Comprehensive Final Report (Complete end-to-end architecture, screenshots, telemetry, and analysis).
 
-*To re-generate all reports from source at any time:*
+*To re-generate all 7 reports from source at any time:*
 ```bash
 python Lab3_Submission/generate_reports.py
 ```

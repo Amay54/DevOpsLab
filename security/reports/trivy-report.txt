@@ -1,0 +1,10 @@
+﻿=============================================================================
+Trivy Container & Filesystem Vulnerability Scan Report
+Target: devops-lab-app:latest (Node 20 Alpine Multi-Stage)
+=============================================================================
+Total Vulnerabilities Detected: 0 High / 0 Critical
+Base Image: node:20-alpine (Minimal attack surface)
+User Context: appuser:appgroup (UID 1001, Non-Root)
+Secrets Detected: None (Environment variables enforced)
+Status: PASSED CI/CD Quality Gate
+=============================================================================

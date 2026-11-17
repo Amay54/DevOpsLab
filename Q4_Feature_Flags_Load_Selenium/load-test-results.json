@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-17T09:35:21.597Z",
+  "vus": 50,
+  "durationSec": 30.087,
+  "totalRequests": 34273,
+  "successfulRequests": 34273,
+  "failedRequests": 0,
+  "rps": 1139.13,
+  "latency": {
+    "min": "5.75",
+    "max": "312.59",
+    "mean": "33.74",
+    "p50": "30.07",
+    "p90": "45.23",
+    "p95": "57.58",
+    "p99": "121.13"
+  },
+  "statusCodes": {
+    "200": 988,
+    "429": 33285
+  }
+}
