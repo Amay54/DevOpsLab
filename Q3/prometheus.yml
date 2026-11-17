@@ -1,0 +1,48 @@
+# ─── Prometheus Configuration ────────────────────────────────────────────────
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+  external_labels:
+    cluster: 'devops-lab'
+    environment: 'development'
+
+# ─── Alerting (optional, placeholder) ────────────────────────────────────────
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets:
+#           - alertmanager:9093
+
+# ─── Scrape Configurations ──────────────────────────────────────────────────
+
+scrape_configs:
+  # ── Application Metrics ──────────────────────────────────────────────────
+  - job_name: 'devops-lab-app'
+    scrape_interval: 15s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['app:3000']
+        labels:
+          service: 'devops-lab-app'
+          environment: 'development'
+    # Handle connection failures gracefully
+    honor_labels: true
+
+  # ── Node Exporter (System Metrics) ───────────────────────────────────────
+  - job_name: 'node-exporter'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'node-exporter'
+          environment: 'development'
+
+  # ── Prometheus Self-Monitoring ───────────────────────────────────────────
+  - job_name: 'prometheus'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
